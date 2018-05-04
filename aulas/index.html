@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Monster Slayer</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="foundation.min.css">
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <section v-if="gameIsRunning==true" class="row">
+            <div class="small-6 columns">
+                <h1 class="text-center">YOU</h1>
+                <transition :enter-active-class="'animated ' + animationP">
+                    <img src="https://images3.alphacoders.com/559/thumb-1920-559308.jpg" alt="" class="imgs" v-if="shakeP">
+                </transition>
+                <br>
+                <div class="healthbar" style="margin-bottom:2rem;">
+                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;" :style="{width: playerHP+'%'}">
+                        {{playerHP}}
+                    </div>
+                    <div class="healthbar text-center" style="background-color: rgb(148, 148, 13); margin: 0; color: white;" :style="{width: stamina*10+'%'}">
+                        {{stamina}}
+                    </div>
+                </div>
+            </div>
+            <div class="small-6 columns">
+                <h1 class="text-center">MONSTER</h1>
+                <transition :enter-active-class="'animated ' + animationM">
+                    <img src="https://art-of-lol.com/wp-content/uploads/2015/12/ChoGath-League-Of-Legends-Fan-Art.jpg" alt="" class="imgs" v-if="shakeM">
+                </transition>
+                <div class="healthbar">
+                    <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;" :style="{width: monsterHP+'%'}">
+                        {{monsterHP}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="row controls" v-if="gameIsRunning==false">
+            <div class="small-12 columns">
+                <button id="start-game" v-on:click="StartGame">START NEW GAME</button>
+            </div>
+        </section>
+        <section class="row controls" v-if="gameIsRunning==true">
+            <div class="small-12 columns">
+                <button id="attack" v-on:click="attack">ATTACK</button>
+                <button id="special-attack" v-on:click="attackS">SPECIAL ATTACK</button>
+                <button id="heal" v-on:click="heal">HEAL</button>
+                <button id="give-up" v-on:click="gameIsRunning=false" v-if="gameIsRunning==true">GIVE UP</button>
+            </div>
+        </section>
+        <section class="row controls" v-if="gameIsRunning==true">
+            <div class="small-12 columns">
+                <button id="upAttack" v-on:click="upAttack">UP dmg {{attackP}} lv.</button>
+                <button id="upSpecial-attack" v-on:click="upArmor">UP armor {{armorP}} lv.</button>
+                <button id="upHeal" v-on:click="upHeal">UP heal {{healP}} lv.</button>
+            </div>
+        </section>
+        <section class="row log" v-if="gameIsRunning==true">
+            <div class="small-12 columns">
+                <ul>
+                    <transition-group name="fade" appear>
+                        <li v-for="turn in turns" :class="{'player-turn' : turn.isPlayer, 'monster-turn': !turn.isPlayer}"
+                            :key="turn.id">
+                            {{ turn.text }}
+                        </li>
+                    </transition-group>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
