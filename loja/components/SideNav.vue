@@ -5,7 +5,7 @@
             <div class="sidenav" v-if="show">
                 <ul class="nav-list" @click="$emit('close')">
                     <li class="nav-item"><nuxt-link to="/" tag="li" class="nav-link"><a>ALL Posts</a></nuxt-link></li>
-                    <li class="nav-item"><nuxt-link to="/about" tag="li" class="nav-link"><a>About</a></nuxt-link></li>
+                    <li class="nav-item"><nuxt-link to="/admin" tag="li" class="nav-link"><a>ADD Product</a></nuxt-link></li>
                     <li class="nav-item">...</li>
                 </ul>
             </div>

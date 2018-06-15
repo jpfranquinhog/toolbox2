@@ -1,7 +1,8 @@
 <template>
     <app-quote>
         <h2>{{produto}}</h2>
-        <p>{{valor}}€</p>
+        <img :src="image" height="120" width="300">
+        <p>{{valor}}€ - {{stock}} stock</p>
     </app-quote>
 </template>
 <script>
@@ -19,7 +20,16 @@
             valor:{
                 type: Number,
                 requires: true
+            },
+            image:{
+                type:String,
+                requires:true
+            },
+            stock:{
+                type:Number,
+                requires: true
             }
         }
     }
 </script>
+

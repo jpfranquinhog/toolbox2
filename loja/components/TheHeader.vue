@@ -5,7 +5,8 @@
         <nav class="main-nav">
           <ul class="nav-links">
             <nuxt-link to="/" tag="li" class="nav-link"><a>ALL Posts</a></nuxt-link>
-            <nuxt-link to="/about" tag="li" class="nav-link"><a>About</a></nuxt-link>
+            <nuxt-link to="/admin" tag="li" class="nav-link"><a>CRUD products</a></nuxt-link>
+            <nuxt-link to="/logout" tag="li" class="nav-link"><a>logout</a></nuxt-link>
           </ul>
         </nav>
       </div>
@@ -20,7 +21,7 @@ import SideNavToggle from "@/components/SideNavToggle";
 export default {
   name:"TheHeader",
   components:{
-    SideNavToggle
+    SideNavToggle,
   }
 }
 </script>
@@ -34,6 +35,7 @@ export default {
     width: 100%;
     background: #022d30;
     height: 4.5rem;
+    z-index:11;
   }
   .main-nav{
     height: 100%;
